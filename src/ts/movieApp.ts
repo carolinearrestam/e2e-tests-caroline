@@ -1,5 +1,6 @@
 import { IMovie } from "./models/Movie";
 import { getData } from "./services/movieService";
+import { movieSort } from "./functions";
 
 let movies: IMovie[] = [];
 
@@ -12,18 +13,17 @@ export const init = () => {
 };
 
 export async function handleSubmit() {
-  let searchText = (document.getElementById("searchText") as HTMLInputElement)
-    .value;
+  const searchText = (document.getElementById("searchText") as HTMLInputElement).value;
+  const sortOrder = (document.getElementById("sortOrder") as HTMLSelectElement).value === "true";
 
-  let container: HTMLDivElement = document.getElementById(
-    "movie-container"
-  ) as HTMLDivElement;
+  const container: HTMLDivElement = document.getElementById("movie-container") as HTMLDivElement;
   container.innerHTML = "";
 
   try {
     movies = await getData(searchText);
 
     if (movies.length > 0) {
+      movies = movieSort(movies, sortOrder);
       createHtml(movies, container);
     } else {
       displayNoResult(container);

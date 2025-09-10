@@ -1,0 +1,20 @@
+{
+    "Search": [
+        {
+            "Title": "Spiderman in Cannes",
+            "imdbID": "tt0145487",
+            "Type": "movie",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BZjc4MDYyMWQtNjM5MS00NzQxLTg5MTktMjI1MTVmNDNmNTA4XkEyXkFqcGc@._V1_SX300.jpg",
+            "Year": "2002"
+        },
+        {
+            "Title": "The Amazing Spiderman",
+            "imdbID": "tt0948470",
+            "Type": "movie",
+            "Poster": "https://m.media-amazon.com/images/M/MV5BNzI0MmQyMzYtZDAzNi00ZWZiLWFjMTgtNzQwOTRjYTFlM2Y3XkEyXkFqcGc@._V1_SX300.jpg",
+            "Year": "2012"
+        }
+    ],
+    "totalResults": "2",
+    "Response": "True"
+}
