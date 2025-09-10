@@ -56,6 +56,25 @@ describe("MovieApp", () => {
     cy.contains("The Amazing Spiderman").should("exist");
   });
 
+it("should clear input when making a new search", () => {
+  cy.intercept("GET", "http://omdbapi.com/*", {
+    statusCode: 200,
+    fixture: "spiderman.json",
+  }).as("getMovies");
+  cy.get("#searchText").type("spiderman");
+  cy.get("#search").click();
+  cy.wait("@getMovies");
+  cy.get("#movie-container .movie").should("have.length", 2);
+  cy.intercept("GET", "http://omdbapi.com/*", {
+    statusCode: 200,
+    fixture: "unsortedMovies.json",
+  }).as("getMovies");
+  cy.get("#searchText").clear().type("heroes");
+  cy.get("#search").click();
+  cy.wait("@getMovies");
+  cy.get("#movie-container .movie").should("have.length", 3);
+});
+
   it("should display movies sorted ascending (A-Ö)", () => {
     cy.intercept("GET", "http://omdbapi.com/*", {
       statusCode: 200,
