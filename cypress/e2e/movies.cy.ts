@@ -10,6 +10,11 @@ describe("MovieApp", () => {
     button.should("exist");
   });
 
+  it("should show message if search is empty", () => {
+    cy.get("#search").click();
+    cy.get("#movie-container").should("contain.text", "Inga sökresultat att visa");
+  });
+
   it("should show movies when searching a valid title-happy flow", () => {
     cy.get("input#searchText").type("Harry Potter");
     cy.get("button#search").click();
@@ -21,7 +26,7 @@ describe("MovieApp", () => {
   });
 
   it("should show message if no movies are found", () => {
-    cy.get("input#searchText").type("asdasdasd1234");
+    cy.get("input#searchText").type("asdfgh");
     cy.get("button#search").click();
     cy.get("div#movie-container").should("contain.text", "Inga sökresultat att visa");
   });
